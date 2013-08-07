@@ -33,8 +33,10 @@
 	current_rotation=$(xrandr -q --verbose | grep eDP1 | cut -b37-43)
 	if [ $current_rotation == "normal" ]; then
 		xrandr -o inverted
+		xinput --set-prop 'Atmel Atmel maXTouch Digitizer' 'Evdev Axis Inversion' 1 1
 	else
 		xrandr -o normal
+		xinput --set-prop 'Atmel Atmel maXTouch Digitizer' 'Evdev Axis Inversion' 0 0
 	fi
 	
 ) 9>/tmp/last_flipscreen_timestamp.lock
